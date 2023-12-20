@@ -20,6 +20,11 @@ public class PlayerInputManager : MonoBehaviour
             BacklogPanel.Instance().Show();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
     public void PromptAdvance()
     {

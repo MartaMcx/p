@@ -37,3 +37,5 @@ narrador "Sale de la habitación en carcajadas ruidosas,{a} ni siquiera hace el 
 <player> "ESPERA, QUEEEE???"
 
 Game Over Nº1 -> A Alaska con la familia.
+
+Pulsa ESCAPE para salir

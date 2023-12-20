@@ -15,12 +15,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Text scoreText;
     [SerializeField] Text turnText;
     [SerializeField] Text move;
+    [SerializeField] Button Continue;
 
     // Start is called before the first frame update
     public void ClickPiece(Cell p)
     {
         if (enabled && turn < 5)
         {
+            Continue.gameObject.SetActive(false);
             if (firstPiece == null)
             {
                 firstPiece = p;
@@ -60,10 +62,14 @@ public class PlayerInput : MonoBehaviour
         }
         else if(turn ==5)
         {
-            PlayerInputManager.SetValidInput(true);
-            TextingFile.Avite();
-            SceneManager.UnloadSceneAsync(2);
+            Continue.gameObject.SetActive(true);
         }
+    }
+    public void EndMini()
+    {
+        PlayerInputManager.SetValidInput(true);
+        TextingFile.Avite();
+        SceneManager.UnloadSceneAsync(2);
     }
 
     public void TurnEnded()

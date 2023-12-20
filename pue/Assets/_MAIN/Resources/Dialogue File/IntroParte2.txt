@@ -54,3 +54,5 @@ Papá "VENGA, HIJO.{a} VE CON DIOS.{c} YA AVISARÉ A TU MADRE CUANDO SALGA DEL B
 Papá "LO MISMO TE DIGO, JAJAJA."
 
 narrador "<player> recoge sus cosas,{a} sale de casa y se mete en el Uber contratado para ir al aeropuerto más cercano para emprender su viaje a Paradise."
+
+Pulsa ESCAPE para salir
