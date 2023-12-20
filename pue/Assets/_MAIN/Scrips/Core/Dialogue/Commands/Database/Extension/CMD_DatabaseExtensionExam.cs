@@ -80,7 +80,10 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
     }
     private static void ChangeScene(string nameScene)
     {
-        SceneManager.LoadScene(nameScene);
+        //TextingFile.SaveData(DialogueSystem.Instance().GetConversationManager().GetConvesation(), DialogueSystem.Instance().GetConversationManager().GetConvesation().GetProgress());
+        PlayerInputManager.SetValidInput(false);
+        TextingFile.Desvite();
+        SceneManager.LoadScene(nameScene, LoadSceneMode.Additive);
     }
     private static void PrintDefaultMessage()
     {

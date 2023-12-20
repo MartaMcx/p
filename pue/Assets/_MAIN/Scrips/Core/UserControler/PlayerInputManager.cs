@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    static bool validInput = true;
+    public static void SetValidInput( bool valid)
+    {
+        validInput = valid; 
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         { 
             PromptAdvance(); 
         }
-        if(Input.mouseScrollDelta.y>0f)
+        if(Input.mouseScrollDelta.y>0f && validInput)
         {
             BacklogPanel.Instance().Show();
         }
@@ -18,7 +23,10 @@ public class PlayerInputManager : MonoBehaviour
     }
     public void PromptAdvance()
     {
-        DialogueSystem.Instance().OnPressed();
+        if (validInput)
+        {
+            DialogueSystem.Instance().OnPressed();
+        }
 
     }
 }

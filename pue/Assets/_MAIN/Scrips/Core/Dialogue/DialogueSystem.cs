@@ -13,7 +13,6 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private Button skipButton;
     [SerializeField] private Button inputButton;
 
-
     private ConversationManager conversatonionManager;
     public ConversationManager GetConversationManager()
     {

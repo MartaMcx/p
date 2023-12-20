@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_MAIN/Scenes/Dialogue.unity
+    guid: ef3491ef18147044594d45620c8848b1
+  - enabled: 1
+    path: Assets/_MAIN/Scenes/Equilibrium/Equilibrium.unity
+    guid: 32b35025124cff944998a030b648c32e
+  - enabled: 1
+    path: Assets/_MAIN/Scenes/Macht3/Macht3.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -28,13 +28,13 @@ public class LL_Condition : ILogicalLine
             }
         }
 
-        currentConversation.setProgress(ifData.GetEndingIndex());
+        currentConversation.SetProgress(ifData.GetEndingIndex());
         
         EncapsulatedData selectedData =conditionResult ? ifData: elseData;
         if(!selectedData.IsNull() && selectedData.GetLines().Count > 0)
         {
             Conversation newConversation = new Conversation(selectedData.GetLines());
-            DialogueSystem.Instance().GetConversationManager().GetConvesation().setProgress(selectedData.GetEndingIndex());
+            DialogueSystem.Instance().GetConversationManager().GetConvesation().SetProgress(selectedData.GetEndingIndex());
             DialogueSystem.Instance().GetConversationManager().EnqueuePriority(newConversation);
         }
         yield return null;

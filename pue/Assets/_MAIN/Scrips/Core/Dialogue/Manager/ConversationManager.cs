@@ -24,7 +24,7 @@ public class ConversationManager
         else
         { return conversatioQueue.top(); }
     }
-    public int GetProgress() { return (conversatioQueue.IsEmpty() ? -1 : conversatioQueue.top().getProgress()); }
+    public int GetProgress() { return (conversatioQueue.IsEmpty() ? -1 : conversatioQueue.top().GetProgress()); }
     public ConversationManager(TextArchitect textArchitect)
     {
         this.archit = textArchitect;

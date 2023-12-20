@@ -13,7 +13,7 @@ public class TagManager
         {"<time>", () => DateTime.Now.ToString("hh:mm:tt")},
         {"<playerlevel>", () => "15"},
         {"<input>",() => InputPanel.Instance().getLastInput()},
-        {"<player>",() => InjectTag("<input>")}
+        {"<player>",() => InjectVariables("$player.myName")}
     };
     private static Regex tagRegex = new Regex("<\\w+>");
     /*

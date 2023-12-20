@@ -27,7 +27,7 @@ public class LL_Choice : ILogicalLine
         Choice SelectChoice = choices[panel.getLastDecision().getAnswerIndex()];
         
         Conversation newConversation =new Conversation(SelectChoice.getResultLines());
-        DialogueSystem.Instance().GetConversationManager().GetConvesation().setProgress(data.GetEndingIndex());
+        DialogueSystem.Instance().GetConversationManager().GetConvesation().SetProgress(data.GetEndingIndex());
         DialogueSystem.Instance().GetConversationManager().EnqueuePriority(newConversation);
     }
     public bool Maches(DIALOGUE_LINE lINE)

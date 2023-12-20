@@ -12,8 +12,8 @@ public class Conversation
         this.lines = list;
         this.progress = progress;
     }
-    public int getProgress() {  return progress; }
-    public void setProgress(int progress) {  this.progress = progress; }
+    public int GetProgress() {  return progress; }
+    public void SetProgress(int progress) {  this.progress = progress; }
     public void IncremaentProgres() { ++progress; }
     public int Count () { return lines.Count; }
     public List<string> GetLines() { return lines; }

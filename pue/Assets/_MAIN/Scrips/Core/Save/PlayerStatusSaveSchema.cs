@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [Serializable]
 [CreateAssetMenu(fileName = "PlayerStatus", menuName = "SaveComponents", order = 1)]
