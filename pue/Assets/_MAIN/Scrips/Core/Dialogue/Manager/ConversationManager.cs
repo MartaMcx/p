@@ -32,8 +32,8 @@ public class ConversationManager
         logiclLineManager = new LogiclLineManager();
         conversatioQueue = new ConversationQueue();
     }
-    public void Enqueue(Conversation convesation ){ conversatioQueue.Enqueue( convesation ); }
-    public void EnqueuePriority(Conversation convesation ){ conversatioQueue.EnqueuePriority( convesation ); }
+    public void Enqueue(Conversation conversation ){ conversatioQueue.Enqueue( conversation ); }
+    public void EnqueuePriority(Conversation conversation ){ conversatioQueue.EnqueuePriority( conversation ); }
     private void OnUserPrompt_Next()
     { 
         userPrompt = true; 
@@ -103,14 +103,14 @@ public class ConversationManager
         process = null;
 
     }
-    private void TryAdvanceConversation(Conversation convesation)
+    private void TryAdvanceConversation(Conversation conversation)
     {
-        convesation.IncremaentProgres();
-        if(convesation != conversatioQueue.top())
+        conversation.IncremaentProgres();
+        if(conversation != conversatioQueue.top())
         {
             return;
         }
-        if(convesation.HasReacheEnd())
+        if(conversation.HasReacheEnd())
         {
             conversatioQueue.Dequeue();
         }
@@ -124,7 +124,7 @@ public class ConversationManager
         { 
             DialogueSystem.Instance().ShowName(TagManager.Inject(line.GetSpeaker().Displayname(),true, true));
                 
-            BacklogPanel.Instance().PutInTest(@$"{line.GetSpeaker().Displayname()} '{line.GetDialogue().GetRawData()}'");
+            BacklogPanel.Instance().PutInTest(@$"{line.GetSpeaker().Displayname()}  ¨{line.GetDialogue().GetRawData()}¨");
 
         }
         else

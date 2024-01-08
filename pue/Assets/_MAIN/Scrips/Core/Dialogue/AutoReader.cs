@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class AutoReader : MonoBehaviour
 {
-    private int DEFAUTL_CHARACTER = 18;
+    private int DEFAUTL_CHARACTER = 20;
     private float READER_TIME_PADING = 0.5f;
     private float MAX_READ_TIME = 99f;
     private float MIN_READ_TIME = 1f;
@@ -15,7 +15,7 @@ public class AutoReader : MonoBehaviour
     private ConversationManager conversationManager;
     private TextArchitect architect;
     private bool skip=false;
-    private float speed = 1f;
+    private float speed = 2f;
     public bool GetSkip() { return skip; }
     public float GetSpeed() { return speed; }
     public bool IsOn() { return co_runing != null; }

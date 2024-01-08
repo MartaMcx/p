@@ -2,6 +2,7 @@ using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,18 @@ public class BacklogPanel : MonoBehaviour
     [SerializeField] private Button hideButton;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Scrollbar scrollbar;
-    private List<string> text;
+    private List<string> text= new List<string>();
     public void SetTest(List<string> text) { this.text = text; }
+    private int nLine = 0;
     public void PutInTest(string line) 
     { 
         text.Add(ReplaceText(line));
-        Text.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, text.Count*150);
+        string charLine=text[text.Count-1];
+        nLine += (charLine.Length / 70);
+        if (nLine > 4)
+        {
+            Text.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, nLine * 150);
+        }
     }
     private string ReplaceText(string text)
     {
@@ -32,13 +39,13 @@ public class BacklogPanel : MonoBehaviour
         {
             text = text.Replace("{c}", "\n");
         }
-        if (text.Contains("{wa}"))
+        if (text.Contains(@"{wa \s\d*\.?\d*\}")) 
         {
-            text = text.Replace("{wa}", "");
+            text = text.Replace(@"{wa \s\d*\.?\d*\}", "");
         }
-        if (text.Contains("{wc}"))
+        if (text.Contains(@"{wc \s\d*\.?\d*\}"))
         {
-            text = text.Replace("{wc}", "\n");
+            text = text.Replace(@"{wc \\s\\d*\\.?\\d*\\}", "\n");
         }
         return text;
     }

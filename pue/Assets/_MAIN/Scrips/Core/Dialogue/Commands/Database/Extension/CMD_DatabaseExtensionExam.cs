@@ -8,7 +8,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
 {
     private static string[] PARAM_FILEPATH = new string[] {"-f","-file","-filepath" };
     private static string[] PARAM_ENQUEUE = new string[] {"-e","-enqueue"};
-    new public static void Extend(CommandDatabase database)
+    new public void Extend(CommandDatabase database)
     {
         //Add Action with no parametrers
         database.AddCommand("print", new Action(PrintDefaultMessage));
@@ -38,7 +38,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
         database.AddCommand("loadMini", new Action<string>(ChangeScene));
     }
     
-    private static void LoadNewFile(string[] data)
+    private void LoadNewFile(string[] data)
     {
         string fileName = string.Empty;
         bool enqueue = false;
@@ -71,29 +71,29 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
         }
     }
 
-    private static IEnumerator Wait(string data)
+    private IEnumerator Wait(string data)
     {
         if(float.TryParse(data,out float time))
         {
             yield return new WaitForSeconds(time);
         }
     }
-    private static void ChangeScene(string nameScene)
+    private void ChangeScene(string nameScene)
     {
         //TextingFile.SaveData(DialogueSystem.Instance().GetConversationManager().GetConvesation(), DialogueSystem.Instance().GetConversationManager().GetConvesation().GetProgress());
         PlayerInputManager.SetValidInput(false);
         TextingFile.Desvite();
         SceneManager.LoadScene(nameScene, LoadSceneMode.Additive);
     }
-    private static void PrintDefaultMessage()
+    private void PrintDefaultMessage()
     {
         Debug.Log("Printing a default menssage to console.");
     }
-    private static void PrintDefaultMessage(string message)
+    private void PrintDefaultMessage(string message)
     {
         Debug.Log($"user Message: '{message}'.");
     }
-    private static void PrintDefaultLines(string[] messages)
+    private void PrintDefaultLines(string[] messages)
     {
         int i = 1;
         foreach (string message in messages)
@@ -102,7 +102,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
         }
 
     }
-    private static IEnumerator SimpleProcess()
+    private IEnumerator SimpleProcess()
     {
         for (int i = 1; i <= 5; ++i)
         {
@@ -110,7 +110,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
             yield return new WaitForSeconds(1);
         }
     }
-    private static IEnumerator LineProcess(string line)
+    private IEnumerator LineProcess(string line)
     {
         if (int.TryParse(line, out int num))
         {
@@ -121,7 +121,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
             }
         }
     }
-    private static IEnumerator MultilineProcess(string[] data)
+    private IEnumerator MultilineProcess(string[] data)
     {
         foreach (string line in data)
         {
@@ -129,7 +129,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
             yield return new WaitForSeconds(0.5f);
         }
     }
-    private static IEnumerator MoveCharacter(string direction)
+    private IEnumerator MoveCharacter(string direction)
     {
         bool left = direction.ToLower() == "left";
 
@@ -147,7 +147,7 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
             yield return null;
         }
     }
-    private static void SavePlayer()
+    private void SavePlayer()
     {
         string name = InputPanel.Instance().getLastInput();
         Debug.Log("Nombre jugador " + name);
@@ -158,18 +158,18 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
 
     //[SerializeField] PlayerStatusSaveSchema PlayerStatusSaveSchema; //reference through unity editor
 
-    private static void SetMoney(string newMoney)
+    private void SetMoney(string newMoney)
     {
         int.TryParse(newMoney, out int Money);
         PlayerStatusSaveSchema.GetVariablesDictionary()["money"] = Money;
     }
-    private static void AddMoney(string moneyToAdd)
+    private void AddMoney(string moneyToAdd)
     {
         int.TryParse(moneyToAdd, out int Money);
         PlayerStatusSaveSchema.GetVariablesDictionary()["money"] += Money;
     }
 
-    private static void ModifyVariable(string[] values)
+    private void ModifyVariable(string[] values)
     {
         string variableToModify =values[0];
         int.TryParse(values[1], out int value);

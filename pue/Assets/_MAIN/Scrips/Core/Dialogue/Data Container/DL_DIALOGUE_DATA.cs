@@ -60,7 +60,7 @@ public class DL_DIALOGUE_DATA
             segment.SetDialogueMarks((DIALOGUE_SEGMENT.DialogueSignals)Enum.Parse(typeof(DIALOGUE_SEGMENT.DialogueSignals), splitMark[0].ToUpper()));
             if (splitMark.Length > 1)
             {
-                float.TryParse(splitMark[1], System.Globalization.NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture.NumberFormat, out float signalWaitDelayDecimals);
+                float.TryParse(splitMark[1], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture.NumberFormat, out float signalWaitDelayDecimals);
                 segment.SetSignalDelay(signalWaitDelayDecimals);
 
             }

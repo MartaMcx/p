@@ -17,7 +17,8 @@ public class CommandManager : MonoBehaviour
         {  
             instance = this; 
             database = new CommandDatabase();
-            CMD_DatabaseExtensionExam.Extend(database);
+            CMD_DatabaseExtensionExam cMD = new CMD_DatabaseExtensionExam();
+            cMD.Extend(database);
         }
         else
         {

@@ -7,12 +7,13 @@ using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
-
+    [SerializeField]  private DialogueConfigSO config;
     [SerializeField] DialogueContainer dialogueContainer = new DialogueContainer();
     [SerializeField] private Button autoButton;
     [SerializeField] private Button skipButton;
     [SerializeField] private Button inputButton;
 
+    public DialogueConfigSO GetConfig() { return config; }
     private ConversationManager conversatonionManager;
     public ConversationManager GetConversationManager()
     {
@@ -48,7 +49,7 @@ public class DialogueSystem : MonoBehaviour
     private void Initialize()
     {
         if (init) return;
-        archi = new TextArchitect(dialogueContainer.getDialogueText());
+        archi = new TextArchitect(dialogueContainer.GetDialogueText());
         conversatonionManager = new ConversationManager(archi);
         cgController = new CanvasGroupController(this, mainCanvas);
         dialogueContainer.Initialize();
@@ -70,20 +71,32 @@ public class DialogueSystem : MonoBehaviour
     }
     public void OnPressed()
     {
-        UserPrompt_Next();
         if(autoReader !=null && autoReader.IsOn())
         {
             autoReader.Disable();
         }
-
+        UserPrompt_Next();
     }
+    public void ApplySpeakerDataToDialogueContainer(string speakername)
+    {
+        Character character = CharacterManager.Instance().GetCharacter(speakername);
+        CharacterConfigData config = character != null ? character.GetConfig() : CharacterManager.Instance().GetCharacterConfig(speakername);
 
+        ApplySpeakerDataToDialogueContainer(config);
+    }
+    public void ApplySpeakerDataToDialogueContainer(CharacterConfigData config)
+    {
+        dialogueContainer.SetDialogueColor(config.GetDialogueColor());
+        dialogueContainer.SetDialogueFont(config.GetDialogueFont());
+        dialogueContainer.GetNameContainer().SetNameColor(config.GetNameColor());
+        dialogueContainer.GetNameContainer().SetNameFont(config.GetNameFont());
+    }
     public void ShowName(string speakerName = "")
     {
 
         if (speakerName.ToLower() != "narrador") 
         {
-            dialogueContainer.getNameContainer().Show(speakerName); 
+            dialogueContainer.GetNameContainer().Show(speakerName); 
         }
         else 
         {
@@ -94,7 +107,7 @@ public class DialogueSystem : MonoBehaviour
     //hide it
     public void HideName() 
     {
-        dialogueContainer.getNameContainer().Hide();
+        dialogueContainer.GetNameContainer().Hide();
     }
     public void ShowHideDialogue()
     {

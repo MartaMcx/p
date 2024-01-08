@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
-public class InputPanel : MonoBehaviour
+public class InputPanel : MonoBehaviour 
 {
     [SerializeField] private Button backButton;
     [SerializeField] private CanvasGroup canvasGroup;
@@ -38,8 +41,9 @@ public class InputPanel : MonoBehaviour
         Debug.Log(title);
         inputField.text = string.Empty;
         cg.Show();
-        isWaitingOnUserInput= true;
+        isWaitingOnUserInput = true;
         cg.SetInteractiveState(active: true);
+        inputField.Select();
     }
     public void Hide()
     {
@@ -50,7 +54,7 @@ public class InputPanel : MonoBehaviour
     }
     public void OnAcceptInput()
     {
-        if(inputField.text ==string.Empty)
+        if(!HasValirText())
         {
             return;
         }
@@ -61,8 +65,27 @@ public class InputPanel : MonoBehaviour
     {
         acceptButton.gameObject.SetActive(HasValirText());
     }
+    public void OnSelected()
+    {
+        Debug.Log("Selecionado");
+    }
     private bool HasValirText()
     {
-        return inputField.text != string.Empty ;
+        string val = inputField.text;
+        if (val.Contains('@')){ val = val.Replace("@",""); }
+        if (val.Contains('#')) { val = val.Replace("#", ""); }
+        if (val.Contains('.')) { val = val.Replace(".", ""); }
+        if (val.Contains('%')) { val = val.Replace("%", ""); }
+        if (val.Contains('&')) { val = val.Replace("&", ""); }
+        if (val.Contains('"')) { val = val.Replace("\"", ""); }
+        if (val.Contains('\'')) { val = val.Replace("'", ""); }
+        if (val.Contains('$')) { val = val.Replace("$", ""); }
+        if (val.Contains('/')) { val = val.Replace("/", ""); }
+        if (val.Contains('(')) { val = val.Replace("(", ""); }
+        if (val.Contains(')')) { val = val.Replace(")", ""); }
+
+        if (val == string.Empty || string.IsNullOrWhiteSpace(val)|| val.Length < 3 && inputField.text.Length < 30)
+        {  return false; }
+        return true;     
     }
 }
